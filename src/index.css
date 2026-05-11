@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;600;700;800&display=swap');
+
+@theme {
+  --font-sans:  sans-serif;
+  /* --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif; */
+  --color-offwhite: #F7F7F7;
+  --color-black: #000000;
+}
+
+body {
+  @apply  font-sans leading-[1.6];
+}
+
+.custom-scrollbar .swiper-scrollbar-drag {
+  @apply bg-black !rounded-full;
+  height: 100% !important;
+}
+.font-semibold{
+  font-weight: 600;
+}
+.custom-scrollbar.swiper-scrollbar {
+  @apply bg-white; 
+  border-radius: 999px;
+}
+.partner-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
