@@ -65,7 +65,7 @@ const Marque = () => {
         {[...images, ...images, ...images].map((src, index) => (
           <SwiperSlide key={index} style={{ width: 'auto' }}>
             <div className="flex items-center gap-10">
-              <h2 className="text-7xl md:text-8xl font-semibold leading-1">
+              <h2 className="text-7xl md:text-8xl leading-1" style={{fontWeight:600}}>
                 {index % 2 === 0 ? "Chasing Consumers" : "NotAlgorithms"}
               </h2>
               <img 

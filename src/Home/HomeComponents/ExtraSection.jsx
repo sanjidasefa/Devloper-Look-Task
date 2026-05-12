@@ -6,12 +6,12 @@ const ExtraSection = () => {
       <h1 
         className='text-black leading-[0.8]' 
         style={{
-          fontSize: '18rem',          // Image er moto bishal size
-          fontWeight: '500',          // Too thin na, Medium weight (image er sathe milbe)
-          letterSpacing: '-0.06em',   // Letter gulo ektar upor arekta uthe thakbe
+          fontSize: '18rem',          
+          fontWeight: '500',         
+          letterSpacing: '-0.06em',   
           display: 'inline-block',
           whiteSpace: 'nowrap',
-          fontFamily: 'sans-serif'    // Clean look
+          fontFamily: 'sans-serif'   
         }}
       >
         ad yt oRis ea tSe

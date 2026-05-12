@@ -59,7 +59,7 @@ export default function Thaught() {
     <section className="py-8 px-6 ">
       <div className="max-w-[1400px] mx-auto">
         <div className="flex justify-between items-end md:mb-16 md:border-b border-gray-200 pb-12">
-          <h1 className="text-[60px] md:text-[90px] font-bold tracking-[-0.04em] leading-none flex items-center gap-4">
+          <h1 style={{fontWeight:600}} className="text-[60px] md:text-[90px] tracking-[-0.04em] leading-none flex items-center gap-4">
             What's
             <span className="inline-block w-14 h-14 md:w-20 md:h-20 bg-blue-600 rounded-2xl overflow-hidden">
               <img

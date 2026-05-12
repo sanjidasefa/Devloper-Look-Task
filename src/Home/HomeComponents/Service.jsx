@@ -22,15 +22,17 @@ const Service = () => {
       style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
     >
       <div className="max-w-[1400px] mx-auto">
-
         {/* ── HEADER ── */}
-        <div
-          className="pb-6 mb-0 flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
-          style={{ borderBottom: '1.5px solid #d1d5db' }}
+      <div
+          className="pb-6 md:border-b md:border-gray-400 mb-0 flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
+        
         >
           <h2
-            className="font-semibold leading-none tracking-tighter flex flex-wrap items-center gap-x-4"
-            style={{ fontSize: 'clamp(3.5rem, 8vw, 6.5rem)' }}
+            className="leading-none text-6xl tracking-tighter flex flex-wrap items-center gap-x-4"
+            style={{ 
+            
+              fontWeight: 600
+            }}
           >
             Our
             <img
@@ -50,16 +52,16 @@ const Service = () => {
         </div>
 
         {/* ── SERVICES GRID ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
           {services.map((item) => {
             const isHov = hoveredId === item.id;
-
             return (
-         
               <div
                 key={item.id}
-                className="cursor-pointer"
-                style={{ borderBottom: '1.5px solid #e5e7eb', padding: '10px 0' }}
+                className="cursor-pointer border-b border-gray-400/50"
+                style={{   
+                  padding: '10px 0' 
+                }}
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
@@ -107,13 +109,14 @@ const Service = () => {
                     </span>
 
                     {/* Service name */}
-                    <h3
-                      className="font-semibold tracking-tight leading-none"
+                   <h3
+                      className="tracking-tighter leading-none" 
                       style={{
-                        fontSize:   'clamp(2rem, 3.2vw, 3rem)',
-                        color:      isHov ? '#ffffff' : '#0f0f0f',
-                        transform:  isHov ? 'translateX(0)' : 'translateX(-3rem)',
+                        fontSize: 'clamp(2rem, 3.2vw, 3rem)',
+                        color: isHov ? '#ffffff' : '#0f0f0f',
+                        transform: isHov ? 'translateX(0)' : 'translateX(-3rem)',
                         transition: `color 0.28s ease, transform 0.38s ${EASE}`,
+                        fontWeight: 600 
                       }}
                     >
                       {item.name}
