@@ -77,7 +77,7 @@ const Hero = () => {
         <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-5">
           {/* AWARD TEXT */}
           <div className="mb-8 flex flex-col items-center">
-            <p className="custom-award-text uppercase text-xs md:text-sm tracking-wide">
+            <p className="custom-award-text uppercase text-xs md:text-sm tracking-tighter">
               #1 Most Recommended
               <br />
               Content Marketing Agency
@@ -105,8 +105,8 @@ const Hero = () => {
 
           {/* MAIN TITLE */}
           <h1 className="custom-hero-title tracking-tighter leading-[0.9] text-[58px] lg:text-[120px]">
-            <span className="block">We Create</span>
-            <span className="flex items-center justify-center gap-3 md:gap-6">
+            <span className="block"  style={{fontWeight:500}} >We Create</span>
+            <span  style={{fontWeight:500}} className="flex items-center justify-center gap-3 md:gap-6">
               Category
               <span className="w-16 h-16 md:w-28 md:h-28 rounded-2xl overflow-hidden shadow-2xl">
                 <img

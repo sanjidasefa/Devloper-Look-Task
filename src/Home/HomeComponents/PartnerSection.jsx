@@ -18,8 +18,8 @@ const PartnerSection = () => {
       <div className="max-w-[1400px] mx-auto px-4">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-20">
           <div className="flex-shrink-0">
-            <p className="text-xs font-bold tracking-wide text-black">
-              The agency behind...
+            <p className="text-xs tracking-wide text-black">
+              The agency behind
             </p>
           </div>
 
@@ -66,9 +66,9 @@ const PartnerSection = () => {
       {/* Content Section */}
       <div className=" mx-auto px-4 mt-15 grid grid-cols-1 md:grid-cols-2 gap-10 items-end">
         <div className="md:order-2">
-          <h2 className="tracking-tighter text-5xl md:text-6xl font-bold leading-[1.1] flex flex-wrap items-center gap-x-4">
-            <span>Driving Demand &</span>
-            <span className="flex items-center gap-4">
+          <h2 className="tracking-tighter text-5xl md:text-6xl leading-[1.1] flex flex-wrap items-center gap-x-4">
+            <span style={{fontWeight:600}}>Driving Demand &</span>
+            <span  style={{fontWeight:600}} className="flex items-center gap-4">
               Discovery
               <span className="inline-block w-14 h-14 md:w-20 md:h-20 rounded-2xl overflow-hidden shadow-xl transform translate-y-1">
                 <img src={partner} alt="Discovery" className="w-full h-full object-cover" />
@@ -77,7 +77,7 @@ const PartnerSection = () => {
           </h2>
         </div>
         <div className="md:order-1 w-2/3">
-          <p className="text-lg md:text-xl font-semibold leading-snug text-gray-900">
+          <p  style={{fontWeight:600}} className="text-lg md:text-xl  leading-snug text-gray-900">
             A global team of search-first content marketers engineering semantic
             relevancy & category signals for both the internet and people
           </p>

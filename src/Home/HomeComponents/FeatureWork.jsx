@@ -120,7 +120,14 @@ const projects = [
 const ITEM_PX = 85;
 const SCROLL_PER_PROJECT = 80;
 
-// Reusable global cursor component
+// ─── Card dimensions for the desktop right-panel column ───────────────────────
+// Each card is ~50 vh tall; gap between cards is 16 px (gap-4).
+// We drive the column upward with translateY so the active card is always
+// the first one visible at the top of the clipped panel.
+const CARD_VH = 50;   // vh
+const CARD_GAP = 16;  // px  (matches gap-4)
+
+// Reusable global cursor component — unchanged
 const GlobalCursor = ({ mousePos, showCursor }) => (
   <AnimatePresence>
     {showCursor && (
@@ -150,7 +157,7 @@ const FeatureWork = () => {
   const desktopSectionRef = useRef(null);
   const desktopRightPanel = useRef(null);
 
-  // Shared cursor state
+  // Shared cursor state — unchanged
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [showCursor, setShowCursor] = useState(false);
 
@@ -190,7 +197,6 @@ const FeatureWork = () => {
     return () => obs.disconnect();
   }, []);
 
-  // Single onMouseMove — reads from whichever panel is active
   const handleMouseMove = (e, panelRef) => {
     const panel = panelRef.current;
     if (!panel) return;
@@ -199,6 +205,11 @@ const FeatureWork = () => {
   };
 
   const activeIndex = projects.findIndex((p) => p.id === activeBrand);
+
+  // Computed translateY so the active card always aligns to the top of the panel
+  // Formula: -(index * (cardHeight_in_vh * 1vh + gap_in_px))
+  // Written as a valid CSS calc() expression
+  const columnTranslate = `calc(${-activeIndex} * (${CARD_VH}vh + ${CARD_GAP}px))`;
 
   return (
     <>
@@ -212,12 +223,15 @@ const FeatureWork = () => {
       >
         <div className="sticky top-3 h-[calc(100vh-24px)] bg-black rounded-3xl mx-3 flex font-sans overflow-hidden">
 
-          {/* Left Panel - Brand Names */}
-          <div className="w-[58%] h-full p-16 flex flex-col justify-between">
+          {/* ── Left Panel ── justify-between keeps label at top, names at bottom */}
+          <div className="w-[58%] h-full px-16 pt-10 pb-10 flex flex-col justify-between">
+
+            {/* TOP — label */}
             <span className="text-white text-sm font-bold">Featured Work</span>
 
+            {/* BOTTOM — scrolling brand names */}
             <div
-              className="overflow-hidden mb-5"
+              className="overflow-hidden"
               style={{ height: `${ITEM_PX * 2.2}px` }}
             >
               <div
@@ -247,32 +261,38 @@ const FeatureWork = () => {
                 })}
               </div>
             </div>
-
-            <div />
           </div>
 
-          {/* Right Panel — global cursor lives here */}
+          {/* ── Right Panel — scrolling column of smaller cards (~50 vh each) ── */}
           <div
             ref={desktopRightPanel}
-            className={`w-[42%] h-full relative ${showCursor ? "cursor-none" : ""}`}
+            className={`w-[42%] h-full overflow-hidden py-5 pr-5 pl-0 relative ${showCursor ? "cursor-none" : ""}`}
             onMouseMove={(e) => handleMouseMove(e, desktopRightPanel)}
             onMouseEnter={() => setShowCursor(true)}
             onMouseLeave={() => setShowCursor(false)}
           >
             <GlobalCursor mousePos={mousePos} showCursor={showCursor} />
 
-            {projects.map((project) => {
-              const isActive = activeBrand === project.id;
-              return (
-                <div
-                  key={project.id}
-                  className={`absolute inset-0 p-12 transition-all duration-700 ease-in-out ${
-                    isActive
-                      ? "opacity-100 z-10"
-                      : "opacity-0 z-0 pointer-events-none"
-                  }`}
-                >
-                  <div className="relative group w-full h-full rounded-2xl overflow-hidden">
+            {/* Sliding column — active card always appears first */}
+            <div
+              className="flex flex-col transition-transform duration-700 ease-in-out"
+              style={{
+                gap: `${CARD_GAP}px`,
+                transform: `translateY(${columnTranslate})`,
+              }}
+            >
+              {projects.map((project) => {
+                const isActive = activeBrand === project.id;
+                return (
+                  <div
+                    key={project.id}
+                    className="relative group flex-shrink-0 rounded-2xl overflow-hidden transition-all duration-700 ease-in-out"
+                    style={{
+                      height: `${CARD_VH}vh`,
+                      opacity: isActive ? 1 : 0.45,
+                      transform: isActive ? "scale(1)" : "scale(0.97)",
+                    }}
+                  >
                     {/* Base image */}
                     <img
                       src={project.image}
@@ -312,15 +332,15 @@ const FeatureWork = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
 
         </div>
       </div>
 
-      {/* ===== MOBILE ===== */}
+      {/* ===== MOBILE — completely unchanged ===== */}
       <div
         className={`lg:hidden bg-black rounded-3xl m-3 min-h-screen flex flex-col font-sans relative ${showCursor ? "cursor-none" : ""}`}
         ref={rightPanel}
