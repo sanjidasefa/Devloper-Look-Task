@@ -8,6 +8,7 @@ import Marque from "./HomeComponents/Marque";
 import Thaught from "./HomeComponents/Thaught";
 import Footer from "./shared/Footer";
 import '../index.css'
+import ExtraSection from "./HomeComponents/ExtraSection";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Marque></Marque>
       <Leagacy></Leagacy>
       <Thaught></Thaught>
+      <ExtraSection></ExtraSection>
       <Footer></Footer>
     </div>
   );
